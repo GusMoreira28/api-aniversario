@@ -6,8 +6,8 @@ app = FastAPI()
 
 
 origins = [
-    "http://localhost:3000",  # A origem do seu frontend Next.js
-    "http://127.0.0.1:3000",  # Outra forma comum de localhost
+    "http://172.16.0.25:3000",  # A origem do seu frontend Next.js
+    "http://intranet.funev.org.br:3000",  # Outra forma comum de localhost
 ]
 
 app.add_middleware(
@@ -22,7 +22,7 @@ app.add_middleware(
 def listar_colaborador():
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT fun.nomfun 'nome',FORMAT(fun.datnas, 'dd/MM/yyyy') 'data' FROM r034fun fun WHERE fun.codfil = 2 AND fun.sitafa = 1 AND fun.tipcol = 1 ORDER BY MONTH(fun.datnas) ASC, DAY(fun.datnas) ASC")
+    cursor.execute("SELECT fun.nomfun 'nome',FORMAT(fun.datnas, 'dd/MM/yyyy') 'data' FROM r034fun fun WHERE fun.codfil = 2 AND fun.sitafa IN (1 , 2) AND fun.tipcol = 1 ORDER BY MONTH(fun.datnas) ASC, DAY(fun.datnas) ASC")
     rows = cursor.fetchall()
     usuarios = [{"nome": r.nome, "data": r.data } for r in rows]
     conn.close()
