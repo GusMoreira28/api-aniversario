@@ -7,7 +7,7 @@ app = FastAPI()
 
 origins = [
     "http://172.16.0.23",  # A origem do seu frontend Next.js
-    "http://intranet.funev.org.br",  # Outra forma comum de localhost
+    "http://intranet.funev.local",  # Outra forma comum de localhost
     "http://172.16.0.23:3000",  # Se você estiver usando React no localhost
     "http://localhost",    # útil para dev
     "http://localhost:3000",  # se usar React
